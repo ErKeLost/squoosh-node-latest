@@ -6,8 +6,6 @@ import { cpus } from 'os';
 // We use `navigator.hardwareConcurrency` for Emscripten’s pthread pool size.
 // This is the only workaround I can get working without crying.
 (globalThis as any).navigator = {
-  // Support Sass in node
-  ...globalThis.navigator,
   hardwareConcurrency: cpus().length,
 };
 
@@ -131,11 +129,10 @@ import rotateWasm from 'asset-url:../../codecs/rotate/rotate.wasm';
 // ImageQuant
 import imageQuant from '../../codecs/imagequant/imagequant_node.js';
 import imageQuantWasm from 'asset-url:../../codecs/imagequant/imagequant_node.wasm';
-
-// const imageQuantPromise: Promise<QuantizerModule> = instantiateEmscriptenWasm(
-//   imageQuant,
-//   imageQuantWasm,
-// );
+const imageQuantPromise: Promise<QuantizerModule> = instantiateEmscriptenWasm(
+  imageQuant,
+  imageQuantWasm,
+);
 
 // Our decoders currently rely on a `ImageData` global.
 import ImageData from './image_data.js';
@@ -226,28 +223,28 @@ export const preprocessors = {
     },
   },
   // // TODO: Need to handle SVGs and HQX
-  // quant: {
-  //   name: 'ImageQuant',
-  //   description: 'Reduce the number of colors used (aka. paletting)',
-  //   instantiate: async () => {
-  //     const imageQuant = await imageQuantPromise;
-  //     return (
-  //       buffer: Uint8Array,
-  //       width: number,
-  //       height: number,
-  //       { numColors, dither }: QuantOptions,
-  //     ) =>
-  //       new ImageData(
-  //         imageQuant.quantize(buffer, width, height, numColors, dither),
-  //         width,
-  //         height,
-  //       );
-  //   },
-  //   defaultOptions: {
-  //     numColors: 255,
-  //     dither: 1.0,
-  //   },
-  // },
+  quant: {
+    name: 'ImageQuant',
+    description: 'Reduce the number of colors used (aka. paletting)',
+    instantiate: async () => {
+      const imageQuant = await imageQuantPromise;
+      return (
+        buffer: Uint8Array,
+        width: number,
+        height: number,
+        { numColors, dither }: QuantOptions,
+      ) =>
+        new ImageData(
+          imageQuant.quantize(buffer, width, height, numColors, dither),
+          width,
+          height,
+        );
+    },
+    defaultOptions: {
+      numColors: 255,
+      dither: 1.0,
+    },
+  },
   rotate: {
     name: 'Rotate',
     description: 'Rotate image',
