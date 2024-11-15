@@ -11,6 +11,7 @@ import { builtinModules } from 'module';
 /** @type {import('rollup').RollupOptions} */
 export default {
   input: 'src/index.ts',
+  watch: true,
   output: {
     dir: 'build',
     format: 'cjs',

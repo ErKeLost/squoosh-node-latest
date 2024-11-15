@@ -11,12 +11,12 @@ function squoosh() {
     name: 'squoosh',
     load(id) {},
     buildStart() {
-      let SquooshPool;
+      // let SquooshPool;
       import('squoosh-next')
         .then((module) => {
-          SquooshPool = module.ImagePool;
-          delete globalThis.navigator;
-          console.log(SquooshPool);
+          // SquooshPool = module.ImagePool;
+          // delete globalThis.navigator;
+          // console.log(SquooshPool);
         })
         .catch(console.error);
     },
