@@ -1,6 +1,6 @@
 {
   "name": "squoosh-next",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Node library for Squoosh support any node version squoosh",
   "public": true,
   "main": "./build/index.js",

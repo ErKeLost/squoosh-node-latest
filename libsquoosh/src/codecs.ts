@@ -129,6 +129,7 @@ import rotateWasm from 'asset-url:../../codecs/rotate/rotate.wasm';
 // ImageQuant
 import imageQuant from '../../codecs/imagequant/imagequant_node.js';
 import imageQuantWasm from 'asset-url:../../codecs/imagequant/imagequant_node.wasm';
+
 const imageQuantPromise: Promise<QuantizerModule> = instantiateEmscriptenWasm(
   imageQuant,
   imageQuantWasm,

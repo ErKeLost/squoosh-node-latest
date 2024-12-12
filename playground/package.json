@@ -13,9 +13,10 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
+    "sass-embedded": "^1.81.0",
+    "squoosh-next": "workspace:*",
     "typescript": "~5.6.2",
     "vite": "^5.4.10",
-    "vue-tsc": "^2.1.8",
-    "squoosh-next": "workspace:*"
+    "vue-tsc": "^2.1.8"
   }
 }
