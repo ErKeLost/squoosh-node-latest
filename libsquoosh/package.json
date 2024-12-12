@@ -1,6 +1,6 @@
 {
   "name": "squoosh-next",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A Node library for Squoosh support any node version squoosh",
   "public": true,
   "main": "./build/index.js",
@@ -9,7 +9,8 @@
     "/build/*"
   ],
   "scripts": {
-    "build": "rollup -c && node lib/move-d-ts.js"
+    "build": "rollup -c && node lib/move-d-ts.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [],
   "author": "Google Chrome Developers <chromium-dev@google.com>",
