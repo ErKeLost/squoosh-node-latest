@@ -1,3 +1,8 @@
+
+> [!IMPORTANT]
+> **Tips:**
+> The squoosh node version is not maintained. This repository will be completed on this basis. The final form of all remaining lib versions and cli versions is to be put into script mode. Currently, node versions below node22 are supported and are compatible with node22 and above versions.
+
 # [Squoosh]!
 
 [Squoosh] is an image compression web app that reduces image sizes through numerous formats.
