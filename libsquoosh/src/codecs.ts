@@ -5,9 +5,21 @@ import { cpus } from 'os';
 
 // We use `navigator.hardwareConcurrency` for Emscripten’s pthread pool size.
 // This is the only workaround I can get working without crying.
-(globalThis as any).navigator = {
-  hardwareConcurrency: cpus().length,
-};
+// (globalThis as any).navigator = {
+//   hardwareConcurrency: cpus().length,
+// };
+// support node 22
+Object.defineProperty(globalThis, 'navigator', {
+  value: { hardwareConcurrency: cpus().length },
+  writable: true,
+  configurable: true,
+});
+
+// Reflect.defineProperty(globalThis, 'navigator', {
+//   value: { hardwareConcurrency: cpus().length },
+//   writable: true,
+//   configurable: true,
+// });
 
 interface DecodeModule extends EmscriptenWasm.Module {
   decode: (data: Uint8Array) => ImageData;
